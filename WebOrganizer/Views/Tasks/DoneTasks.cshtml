@@ -1,21 +1,7 @@
-﻿@model IEnumerable<WebOrganizer.Models.Task>
-
-@{
-    ViewBag.Title = "Index";
-}
-
-<h2>Tasks</h2> 
- 
-@if (Session["LogedUsername"] != null)
-{
-    <text>
-        Have a nice day, @Session["LogedUsername"].ToString()! 
-    </text>
-
-}
+﻿@model IEnumerable<WebOrganizer.Models.FinishedTask>
 
 <p>
-    @Html.ActionLink("Create New", "Create")
+    @Html.ActionLink("Tasks in process", "Index", "Tasks")
 </p>
 <table class="table">
     <tr>
@@ -32,7 +18,7 @@
             @Html.DisplayNameFor(model => model.Category)
         </th>
        
-        <th>Actions</th>
+        <th></th>
     </tr>
 
 @foreach (var item in Model) {
@@ -49,19 +35,12 @@
         <td>
             @Html.DisplayFor(modelItem => item.Category)
         </td>
-       
+
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TaskID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TaskID }) |
-            
-            @Html.ActionLink("Done", "Done", new { id = item.TaskID }) |
+           
             @Html.ActionLink("Delete", "Delete", new { id=item.TaskID })
         </td>
     </tr>
 }
 
 </table>
-
-
-@Html.ActionLink("Finished tasks", "DoneTasks", "Tasks")
-

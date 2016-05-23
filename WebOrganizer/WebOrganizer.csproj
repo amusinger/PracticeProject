@@ -144,6 +144,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\FinishedTask.cs">
+      <DependentUpon>UserTaskModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\Task.cs">
       <DependentUpon>UserTaskModel.tt</DependentUpon>
     </Compile>
@@ -184,6 +187,8 @@
     <Content Include="Views\User\!working Login.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\Tasks\DoneTasks.cshtml" />
+    <Content Include="Views\Tasks\Done.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

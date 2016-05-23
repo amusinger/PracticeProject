@@ -27,5 +27,6 @@ namespace WebOrganizer.Models
     
         public virtual DbSet<Task> Tasks { get; set; }
         public virtual DbSet<User> Users { get; set; }
+        public virtual DbSet<FinishedTask> FinishedTasks { get; set; }
     }
 }

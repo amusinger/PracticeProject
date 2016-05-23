@@ -11,7 +11,6 @@ namespace WebOrganizer.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
     
     public partial class User
     {
@@ -19,21 +18,16 @@ namespace WebOrganizer.Models
         public User()
         {
             this.Tasks = new HashSet<Task>();
+            this.FinishedTasks = new HashSet<FinishedTask>();
         }
     
         public int UserID { get; set; }
-        [Required(ErrorMessage="Please enter username")]
         public string Username { get; set; }
-        [Required(ErrorMessage = "Please provide password")]
-        [DataType(DataType.Password)]
-        [StringLength(5, ErrorMessage="Password must be minimum 5 chars long")]
         public string Password { get; set; }
-        [Compare("Password")]
-        [Display(Name = "Confirm password")]
-        [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FinishedTask> FinishedTasks { get; set; }
     }
 }

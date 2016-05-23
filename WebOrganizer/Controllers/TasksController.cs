@@ -133,6 +133,47 @@ namespace WebOrganizer.Controllers
             return RedirectToAction("Index");
         }
 
+
+
+        public ActionResult DoneTasks()
+        {
+            var uID = Session["LogedUserID"].ToString();
+            int LogedID = Int32.Parse(Session["LogedUserID"].ToString());
+
+            if (uID != null)
+            {
+                var tasks = db.FinishedTasks.Where(x => x.UserID == LogedID).ToList();
+                return View(tasks);
+            }
+            else
+            {
+                return RedirectToAction("Index", "Tasks");
+            }
+        }
+
+      
+        public ActionResult Done(int? id)
+        {
+            Task task = db.Tasks.Find(id);
+            FinishedTask ft = new FinishedTask();
+            ft.TaskID = task.TaskID;
+            ft.TaskDescription = task.TaskDescription;
+            ft.StartDate = task.StartDate;
+            ft.FinishDate = task.FinishDate;
+            ft.Category = task.Category;
+            ft.UserID = task.UserID;
+            db.FinishedTasks.Add(ft);
+
+            db.Tasks.Remove(task);
+            db.SaveChanges();
+            return RedirectToAction("Index");
+        }
+
+       
+
+
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
