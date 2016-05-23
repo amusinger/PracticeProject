@@ -1,0 +1,15 @@
+﻿@model WebOrganizer.Models.User
+
+
+@{
+    ViewBag.Title = "AfterLogin";
+}
+
+<h2>After Login</h2>
+@if (Session["LogedUserFullname"] != null)
+{
+    <text>
+        Welcome @Session["LogedUserFullname"].ToString()
+    </text>
+
+}
