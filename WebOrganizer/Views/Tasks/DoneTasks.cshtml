@@ -1,5 +1,14 @@
 ﻿@model IEnumerable<WebOrganizer.Models.FinishedTask>
 
+<h2>Tasks</h2>
+
+@if (Session["LogedUsername"] != null)
+{
+    <text>
+       You did a great job, @Session["LogedUsername"].ToString()!
+    </text>
+
+}
 <p>
     @Html.ActionLink("Tasks in process", "Index", "Tasks")
 </p>

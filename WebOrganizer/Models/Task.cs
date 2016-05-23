@@ -11,12 +11,15 @@ namespace WebOrganizer.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class Task
     {
         public int TaskID { get; set; }
         public string TaskDescription { get; set; }
+        [DataType(DataType.Date)]
         public Nullable<System.DateTime> StartDate { get; set; }
+         [DataType(DataType.Date)]
         public Nullable<System.DateTime> FinishDate { get; set; }
         public string Category { get; set; }
         public int UserID { get; set; }
