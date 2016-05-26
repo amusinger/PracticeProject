@@ -1,7 +1,7 @@
 ﻿@model IEnumerable<WebOrganizer.Models.Task>
 
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Tasks";
 }
 
 <h2>Tasks</h2> 
@@ -51,11 +51,18 @@
         </td>
        
         <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TaskID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TaskID }) |
+            @*<a href="~/Views/Tasks/Edit/@item.TaskID" class="btn btn-success glyphicon glyphicon-edit " style="margin-left:auto; margin-right:auto"></a> |
+            <a href="/Home/Edit/@b.id" class="btn btn-primary glyphicon glyphicon-edit " style="margin-left:auto; margin-right:auto"></a>
+            <a href="/Home/Delete/@b.id" class=" btn btn-danger glyphicon glyphicon-trash"></a>*@
+
+          
+
+            @Html.ActionLink(" ", "Edit",  new { id = item.TaskID }, htmlAttributes: new{ @class = "glyphicon glyphicon-edit" }) |
             
-            @Html.ActionLink("Done", "Done", new { id = item.TaskID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TaskID })
+    @*@Html.ActionLink("Details", "Details", new { id=item.TaskID }) |*@
+            
+            @Html.ActionLink(" ", "Done", new { id = item.TaskID }, htmlAttributes: new { @class = "glyphicon glyphicon-ok" }) |
+            @Html.ActionLink(" ", "Delete", new { id = item.TaskID }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })
         </td>
     </tr>
 }

@@ -23,6 +23,9 @@ namespace WebOrganizer.Controllers
             if (uID != null)
             {
                 var tasks = db.Tasks.Where(x => x.UserID == LogedID).ToList();
+                tasks.OrderBy(x => x.StartDate);
+                tasks.OrderBy(x => x.TaskDescription);
+                
                 return View(tasks);
             }
             else
@@ -31,7 +34,7 @@ namespace WebOrganizer.Controllers
             }
         }
 
-        // GET: Tasks/Details/5
+        // GET: Tasks/Details/5 not used
         public ActionResult Details(int? id)
         {
             if (id == null)
@@ -63,6 +66,7 @@ namespace WebOrganizer.Controllers
             if (ModelState.IsValid)
             {
                 task.UserID = Int32.Parse(Session["LogedUserID"].ToString());
+                
                 
                 db.Tasks.Add(task);
                 db.SaveChanges();
@@ -168,6 +172,28 @@ namespace WebOrganizer.Controllers
             db.SaveChanges();
             return RedirectToAction("Index");
         }
+        
+        public ActionResult DoneDelete(int? DoneID)
+        {
+            if (DoneID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            FinishedTask task = db.FinishedTasks.Find(DoneID);
+          
+           
+            if (task == null)
+            {
+                return HttpNotFound();
+            }
+
+            db.FinishedTasks.Remove(task);
+            db.SaveChanges();
+            return RedirectToAction("DoneTasks");
+
+        }
+
+      
 
        
         protected override void Dispose(bool disposing)

@@ -3,34 +3,69 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="~/Content/img/ourIcon.ico">
     <title>@ViewBag.Title - Web Organizer</title>
+
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
+    
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
+    
+    
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
+
+    <link href="~/Content/Style.css" rel="stylesheet" type="text/css" />
+    @System.Web.Optimization.Styles.Render("~/Content/Site.css")
+    @*@System.Web.Optimization.Scripts.Render("~/bundles/modernizr")*@
+    @System.Web.Optimization.Scripts.Render("~/Scripts/jquery-1.10.2.min.js")
+    @System.Web.Optimization.Scripts.Render("~/Scripts/bootstrap.js")
+    @System.Web.Optimization.Scripts.Render("~/Scripts/moment.js")
+    @System.Web.Optimization.Scripts.Render("~/Scripts/bootstrap-datetimepicker.js")
+    
+
+    @RenderSection("styles", required: false)
 </head>
-<body>
+<body style='overflow-x:hidden;'>
     <div class="navbar navbar-inverse navbar-fixed-top">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                    <span class="icon-bar">@Html.ActionLink("Login", "User")</span>
-                    <span class="icon-bar">@Html.ActionLink("Register", "User")</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Web Organizer", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
-                @if (Session["LogedUserID"] == null)
-                {
-                    @Html.ActionLink("Login", "Login", "User", new { area = "" }, new { @class = "navbar-brand" })
-                }
-                @if (Session["LogedUserID"] != null)
-                {
-                    @Html.ActionLink("My Tasks", "Index", "Tasks", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Finished Tasks", "DoneTasks", "Tasks", new { area = "" }, new { @class = "navbar-brand" })
-                    @Html.ActionLink("Log out", "Logout", "User", new { area = "" }, new { @class = "navbar-brand" })
-                }
+                <a href="/Home/Index" class="navbar-brand topnav go "><img src="~/Content/img/icon.png" class="navImage"></a>
+               
+                 @Html.ActionLink("To DO", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+             
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav"></ul>
+                @*@if (Session["LogedUsername"] == "admin") { }*@
+                @if (Session["LogedUserID"] == null)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        @Html.ActionLink("Login", "Login", "User", new { area = "" }, new { @class = "navbar-brand" })
+                    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        @Html.ActionLink("Register", "Register", "User", new { area = "" }, new { @class = "navbar-brand" })
+    </ul>
+                }
+
+                @if (Session["LogedUserID"] != null)
+                {
+                    <ul class="nav navbar-nav navbar-right">
+                        @Html.ActionLink("My Tasks", "Index", "Tasks", new { area = "" }, new { @class = "navbar-brand" })
+                    </ul>
+    <ul class="nav navbar-nav navbar-right">
+        @Html.ActionLink("Finished Tasks", "DoneTasks", "Tasks", new { area = "" }, new { @class = "navbar-brand" })
+    </ul>
+
+    <ul class="nav navbar-nav navbar-right">
+        @Html.ActionLink("Log out", "Logout", "User", new { area = "" }, new { @class = "navbar-brand" })
+    </ul>
+                }
+
+
             </div>
         </div>
     </div>
@@ -43,8 +78,22 @@
         </footer>
     </div>
 
+    @*@System.Web.Optimization.Styles.Render("~/Content/themes/base/css", "~/Content/css")
+        @System.Web.Optimization.Scripts.Render("~/Scripts/bootstrap.min.js")
+
+        @System.Web.Optimization.Styles.Render("~/Scripts/jquery-1.10.2.min.js")
+        @System.Web.Optimization.Scripts.Render("~/Scripts/bootstrap-datetimepicker.js")*@
+
+
     <script src="~/Scripts/jquery-1.10.2.min.js"></script>
     <script src="~/Scripts/bootstrap.min.js"></script>
-    <script src="~/Scripts/bootstrap-datetimepicker.min.js"></script>
+
+    <script type="text/javascript" src="~/Scripts/moment.js"></script>
+    <script src="~/Scripts/bootstrap-datetimepicker.js"></script>
+
+
+    @*<script src="~/Scripts/jquery.backstretch.js"></script>*@
+   
+    @RenderSection("scripts", required: false)
 </body>
 </html>

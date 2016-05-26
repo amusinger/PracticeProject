@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using WebOrganizer.Models;
@@ -73,6 +74,11 @@ namespace WebOrganizer.Controllers
 
         public ActionResult AfterLogin()
         {
+            var s = Session["LogedUsername"].ToString();
+            if (Session["LogedUserID"] != null && s.Equals("admin"))
+            {
+                return RedirectToAction("Users");
+            }
             if (Session["LogedUserID"] != null)
             {
                 return RedirectToAction("Index", "Tasks");
@@ -82,5 +88,33 @@ namespace WebOrganizer.Controllers
                 return RedirectToAction("Login", "User");
             }
         }
+
+        public ActionResult Users()
+        {
+            UserDbEntities db = new UserDbEntities();
+            var users = db.Users;
+            return View(users);
+
+        }
+        public ActionResult UserDetails(int? UsersID)
+        {
+            UserDbEntities db = new UserDbEntities();
+                        
+            if (UsersID == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            WebOrganizer.Models.myModel.AllTasks model = new WebOrganizer.Models.myModel.AllTasks();
+            model.Tasks = db.Tasks.Where(x => x.UserID == UsersID);
+            model.FinishedTasks = db.FinishedTasks.Where(x => x.UserID == UsersID);
+            if (model.Tasks == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        
+        }
+
+        
     }
 }

@@ -35,7 +35,7 @@
           <Property Name="Username" Type="nvarchar" MaxLength="50" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
         </EntityType>
-        <Association Name="FK__FinishedT__UserI__49C3F6B7">
+        <Association Name="FK__FinishedT__UserI__6FE99F9F">
           <End Role="Users" Type="Self.Users" Multiplicity="1" />
           <End Role="FinishedTasks" Type="Self.FinishedTasks" Multiplicity="*" />
           <ReferentialConstraint>
@@ -63,7 +63,7 @@
           <EntitySet Name="FinishedTasks" EntityType="Self.FinishedTasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Tasks" EntityType="Self.Tasks" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__FinishedT__UserI__49C3F6B7" Association="Self.FK__FinishedT__UserI__49C3F6B7">
+          <AssociationSet Name="FK__FinishedT__UserI__6FE99F9F" Association="Self.FK__FinishedT__UserI__6FE99F9F">
             <End Role="Users" EntitySet="Users" />
             <End Role="FinishedTasks" EntitySet="FinishedTasks" />
           </AssociationSet>

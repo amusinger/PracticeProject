@@ -16,10 +16,16 @@ namespace WebOrganizer.Models
     public partial class Task
     {
         public int TaskID { get; set; }
+        [Required(ErrorMessage = "You forgot to enter a task.")]
+        [Display(Name = "To do")]
         public string TaskDescription { get; set; }
+         
         [DataType(DataType.Date)]
+         [Display(Name = "Start")]
         public Nullable<System.DateTime> StartDate { get; set; }
-         [DataType(DataType.Date)]
+         
+        [DataType(DataType.Date)]
+         [Display(Name = "Finish")]
         public Nullable<System.DateTime> FinishDate { get; set; }
         public string Category { get; set; }
         public int UserID { get; set; }

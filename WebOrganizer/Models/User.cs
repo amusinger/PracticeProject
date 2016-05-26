@@ -11,6 +11,7 @@ namespace WebOrganizer.Models
 {
     using System;
     using System.Collections.Generic;
+    using System.ComponentModel.DataAnnotations;
     
     public partial class User
     {
@@ -20,14 +21,24 @@ namespace WebOrganizer.Models
             this.Tasks = new HashSet<Task>();
             this.FinishedTasks = new HashSet<FinishedTask>();
         }
-    
+
         public int UserID { get; set; }
+        [Required(ErrorMessage = "You forgot to enter a username.")]
         public string Username { get; set; }
+        [Required(ErrorMessage = "You forgot to enter a password.")]
+        [StringLength(30, MinimumLength = 5, ErrorMessage = "Minimum 5 chars")]
+        [DataType(DataType.Password)]
         public string Password { get; set; }
+        [Compare("Password", ErrorMessage = "The password and confirmation do not match.")]
+        [DataType(DataType.Password)]
+        [Display(Name = "Confirm password")]
         public string ConfirmPassword { get; set; }
+    
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<Task> Tasks { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FinishedTask> FinishedTasks { get; set; }
+
+        
     }
 }
