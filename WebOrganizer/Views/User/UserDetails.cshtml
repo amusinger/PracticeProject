@@ -1,4 +1,4 @@
-﻿@model IEnumerable<WebOrganizer.Models.myModel.AllTasks>
+﻿@model WebOrganizer.Models.myModel.AllTasks
  
 @{
     ViewBag.Title = "UserDetails";
@@ -7,6 +7,44 @@
 <h2>UserDetails</h2>
 
 <h3>Tasks in proccess</h3>
+<table class="table">
+    <tr>
+        <th>
+            Task
+        </th>
+        <th>
+            Start
+        </th>
+        <th>
+            Finish
+        </th>
+        <th>
+            Comments
+        </th>
+
+    </tr>
+    @foreach (var item in Model.Tasks)
+    {
+       
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinishDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+
+
+        </tr>
+    }
+</table>
+
 @*<table class="table">
     <tr>
         <th>
@@ -47,3 +85,44 @@
 </table>*@
 
 <h3>Finished tasks</h3>
+<table class="table">
+    <tr>
+        <th>
+            Task
+        </th>
+        <th>
+            Start
+        </th>
+        <th>
+            Finish
+        </th>
+        <th>
+            Comments
+        </th>
+
+        
+    </tr>
+    @foreach (var item in Model.FinishedTasks)
+    {
+    
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.TaskDescription)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.StartDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.FinishDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+
+
+        </tr>
+    }
+</table>
+<p>
+@Html.ActionLink("Back to List", "Users", "User")
+</p>

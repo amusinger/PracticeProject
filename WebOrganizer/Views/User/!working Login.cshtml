@@ -8,8 +8,8 @@
 
 @using (Html.BeginForm())
 {
-    //this  is for create form tag
-    @Html.AntiForgeryToken()          // this is for prevent CSRF attack
+   
+    @Html.AntiForgeryToken()          
   
     if (ViewBag.Message != null)
     {

@@ -6,34 +6,63 @@
 
 <h2>Users</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Username)
-        </th>
-        @*<th>
-            @Html.DisplayNameFor(model => model.Password)
-        </th>*@
-        <th></th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Username)
-        </td>
-        @*<td>
-            @Html.DisplayFor(modelItem => item.Password)
-        </td>*@
-        <td>
-         
-            @Html.ActionLink("Details", "UserDetails", new { UsersID=item.UserID }) |
-            @Html.ActionLink("Delete", "Delete", new { UsersID=item.UserID })
-        </td>
-    </tr>
+@{
+    AjaxOptions options = new AjaxOptions
+                        {
+                            UpdateTargetId = "results",
+                            LoadingElementId = "loading",
+                            InsertionMode = InsertionMode.Replace,
+                            LoadingElementDuration = 1000
+                        };
 }
 
+@using (Ajax.BeginForm("Search", options))
+{
+    <div id="loading" style="display:none; color:green; font-weight:bold;">
+        <p>Searching ...</p>
+    </div>
+    <div>
+        @ViewBag.name
+        Username: @Html.TextBox("name", null, new { @class = "form-control" })
+        <input type="submit" value="Search" class="btn btn-default" />
+        
+    </div>
+
+}
+<p></p>
+
+
+<div id="results">
+    <table class="table">
+        <thead class="thead-default">
+            <tr>
+                <th>
+                    Username
+                </th>
+                <th>Actions</th>
+        
+
+            </tr>
+            </thead>
+
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Username)
+                    </td>
+
+                    <td>
+
+                        @Html.ActionLink("Details", "UserDetails",  new { UsersID = item.UserID }) |
+                        @Html.ActionLink("Delete", "UserDelete",  new { UsersID = item.UserID })
+                    </td>
+                </tr>
+            }
+
 </table>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}

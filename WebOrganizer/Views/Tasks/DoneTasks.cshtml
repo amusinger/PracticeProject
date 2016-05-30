@@ -12,6 +12,14 @@
 <p>
     @Html.ActionLink("Tasks in process", "Index", "Tasks")
 </p>
+
+@if (@ViewBag.Message == null) { 
+ <h3> No finished tasks yet.</h3> 
+    <h2 style="text-align:center">Just DO it</h2>
+    <img src="~/Content/img/doo.png" class="notask" />
+}
+
+@if (@ViewBag.Message !=null) { 
 <table class="table">
     <tr>
         <th>
@@ -26,8 +34,11 @@
         <th>
             @Html.DisplayNameFor(model => model.Category)
         </th>
+        <th>
+            Actions
+        </th>
        
-        <th></th>
+        
     </tr>
 
 @foreach (var item in Model) {
@@ -53,3 +64,4 @@
 }
 
 </table>
+}

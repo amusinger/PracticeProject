@@ -1,0 +1,30 @@
+﻿@model IEnumerable<WebOrganizer.Models.User>
+
+<table class="table">
+    <thead class="thead-default">
+        <tr>
+            <th>
+               Username
+            </th>
+            <th>Actions</th>
+
+        </tr>
+        </thead>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Username)
+                </td>
+
+                <td>
+
+                    @Html.ActionLink("Details", "UserDetails", new { UsersID = item.UserID }) |
+                    @Html.ActionLink("Delete", "UserDelete",  new { UsersID = item.UserID })
+                </td>
+            </tr>
+        }
+
+</table>
+

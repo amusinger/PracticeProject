@@ -12,21 +12,20 @@ namespace WebOrganizer.Models
     using System;
     using System.Collections.Generic;
     using System.ComponentModel.DataAnnotations;
-    
+
     public partial class Task
     {
         public int TaskID { get; set; }
         [Required(ErrorMessage = "You forgot to enter a task.")]
         [Display(Name = "To do")]
         public string TaskDescription { get; set; }
-         
         [DataType(DataType.Date)]
-         [Display(Name = "Start")]
+        [Display(Name = "Start")]
         public Nullable<System.DateTime> StartDate { get; set; }
-         
         [DataType(DataType.Date)]
-         [Display(Name = "Finish")]
+        [Display(Name = "Finish")]
         public Nullable<System.DateTime> FinishDate { get; set; }
+         [Display(Name = "Comment")]
         public string Category { get; set; }
         public int UserID { get; set; }
     

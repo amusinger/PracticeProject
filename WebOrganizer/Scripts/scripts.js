@@ -8,9 +8,7 @@ jQuery(document).ready(function () {
                     "/Content/img/1.jpg",
                     "/Content/img/2.jpg",
                     "/Content/img/3.jpg"
-                  //  "2.jpg"
-	              //, "3.jpg"
-	              //, "1.jpg"
+               
     ], { duration: 3000, fade: 750 });
 
     /*

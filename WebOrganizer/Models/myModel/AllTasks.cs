@@ -7,7 +7,9 @@ namespace WebOrganizer.Models.myModel
 {
     public class AllTasks
     {
-        public IEnumerable<Task> Tasks { get; set; }
-        public IEnumerable<FinishedTask> FinishedTasks { get; set; }
+        public IList<Task> Tasks { get; set; }
+        public IList<FinishedTask> FinishedTasks { get; set; }
+        //public IEnumerable<Task> Tasks { get; set; }
+        //public IEnumerable<FinishedTask> FinishedTasks { get; set; }
     }
 }

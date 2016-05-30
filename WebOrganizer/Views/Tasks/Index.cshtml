@@ -14,60 +14,64 @@
 
 }
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.TaskDescription)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.StartDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.FinishDate)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Category)
-        </th>
-       
-        <th>Actions</th>
-    </tr>
-
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.TaskDescription)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.StartDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.FinishDate)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Category)
-        </td>
-       
-        <td>
-            @*<a href="~/Views/Tasks/Edit/@item.TaskID" class="btn btn-success glyphicon glyphicon-edit " style="margin-left:auto; margin-right:auto"></a> |
-            <a href="/Home/Edit/@b.id" class="btn btn-primary glyphicon glyphicon-edit " style="margin-left:auto; margin-right:auto"></a>
-            <a href="/Home/Delete/@b.id" class=" btn btn-danger glyphicon glyphicon-trash"></a>*@
-
-          
-
-            @Html.ActionLink(" ", "Edit",  new { id = item.TaskID }, htmlAttributes: new{ @class = "glyphicon glyphicon-edit" }) |
-            
-    @*@Html.ActionLink("Details", "Details", new { id=item.TaskID }) |*@
-            
-            @Html.ActionLink(" ", "Done", new { id = item.TaskID }, htmlAttributes: new { @class = "glyphicon glyphicon-ok" }) |
-            @Html.ActionLink(" ", "Delete", new { id = item.TaskID }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })
-        </td>
-    </tr>
+@if (@ViewBag.Message == null)
+{
+    <img src="~/Content/img/notask.jpg" class="notask" />
 }
 
+    
+
+@if (@ViewBag.Message != null)
+{
+<table class="table">
+    <thead class="thead-success">
+        <tr class="table-active">
+            <th>
+                @Html.DisplayNameFor(model => model.TaskDescription)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.StartDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.FinishDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+
+            <th>Actions</th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.TaskDescription)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.FinishDate)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Category)
+                </td>
+
+                <td>
+                 
+
+                    @Html.ActionLink(" ", "Edit", new { id = item.TaskID }, htmlAttributes: new { @class = "glyphicon glyphicon-edit" }) |
+
+                    @Html.ActionLink(" ", "Done", new { id = item.TaskID }, htmlAttributes: new { @class = "glyphicon glyphicon-ok" }) |
+                    @Html.ActionLink(" ", "Delete", new { id = item.TaskID }, htmlAttributes: new { @class = "glyphicon glyphicon-trash" })
+                </td>
+            </tr>
+        }
+
 </table>
+    
+}
 
 
 @Html.ActionLink("Finished tasks", "DoneTasks", "Tasks")

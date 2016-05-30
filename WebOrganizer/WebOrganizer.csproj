@@ -125,20 +125,24 @@
     <Content Include="Content\img\1.jpg" />
     <Content Include="Content\img\2.jpg" />
     <Content Include="Content\img\3.jpg" />
-    <Content Include="Views\User\1.jpg" />
     <Content Include="Content\img\2%402x.jpg" />
-    <Content Include="Views\User\2.jpg" />
     <Content Include="Content\img\2mans.jpg" />
     <Content Include="Content\img\3%402x.jpg" />
-    <Content Include="Views\User\3.jpg" />
+    <Content Include="Content\img\Aizhan.jpg" />
     <Content Include="Content\img\another.jpg" />
+    <Content Include="Content\img\bm.png" />
     <Content Include="Content\img\check.jpg" />
     <Content Include="Content\img\cloud.png" />
+    <Content Include="Content\img\do.jpg" />
+    <Content Include="Content\img\doo.png" />
     <Content Include="Content\img\edit.png" />
+    <Content Include="Content\img\Eugene.jpg" />
     <Content Include="Content\img\icon.png" />
     <Content Include="Content\img\introBG.jpg" />
+    <Content Include="Content\img\notask.jpg" />
     <Content Include="Content\img\ourIcon.ico" />
     <Content Include="Content\img\share.png" />
+    <Content Include="Content\img\Tamer.jpg" />
     <Content Include="Content\LoginStyle.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Style.css" />
@@ -155,6 +159,7 @@
     </Content>
     <Content Include="Models\UserTaskModel.edmx.diagram">
       <DependentUpon>UserTaskModel.edmx</DependentUpon>
+      <SubType>Designer</SubType>
     </Content>
     <Content Include="Models\UserTaskModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -206,6 +211,8 @@
     <Content Include="Scripts\jquery-1.10.2.min.js" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.backstretch.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -282,6 +289,9 @@
     <Content Include="Views\Tasks\!not used DoneDelete.cshtml" />
     <Content Include="Views\User\Users.cshtml" />
     <Content Include="Views\User\UserDetails.cshtml" />
+    <Content Include="Views\User\Search.cshtml" />
+    <Content Include="Views\User\EditProfile.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -289,9 +299,7 @@
       <DependentUpon>Web.config</DependentUpon>
     </None>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Views\Admin\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>

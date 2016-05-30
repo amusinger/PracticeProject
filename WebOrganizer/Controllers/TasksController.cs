@@ -19,39 +19,61 @@ namespace WebOrganizer.Controllers
         {
             var uID = Session["LogedUserID"].ToString();
             int LogedID = Int32.Parse(Session["LogedUserID"].ToString());
+            if (Session["LogedUserID"] == null)
+            {
+                return RedirectToAction("Index");
+            }
 
             if (uID != null)
             {
                 var tasks = db.Tasks.Where(x => x.UserID == LogedID).ToList();
+
                 tasks.OrderBy(x => x.StartDate);
                 tasks.OrderBy(x => x.TaskDescription);
+
+                var s = tasks.FirstOrDefault();
+                if(s == null)
+                {
+                    ViewBag.Message = null;
+                }
+               
+                if(s != null)
+                {
+                    ViewBag.Message = "tasks";
+                }
                 
                 return View(tasks);
             }
+            
             else
             {
                 return RedirectToAction("Login", "User");
             }
+            
         }
 
-        // GET: Tasks/Details/5 not used
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Task task = db.Tasks.Find(id);
-            if (task == null)
-            {
-                return HttpNotFound();
-            }
-            return View(task);
-        }
+        //// GET: Tasks/Details/5 not used
+        //public ActionResult Details(int? id)
+        //{
+        //    if (id == null)
+        //    {
+        //        return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+        //    }
+        //    Task task = db.Tasks.Find(id);
+        //    if (task == null)
+        //    {
+        //        return HttpNotFound();
+        //    }
+        //    return View(task);
+        //}
 
         // GET: Tasks/Create
         public ActionResult Create()
         {
+            if (Session["LogedUserID"] == null)
+            {
+                return RedirectToAction("Index");
+            }
            
             return View();
         }
@@ -63,6 +85,11 @@ namespace WebOrganizer.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "TaskID,TaskDescription,StartDate,FinishDate,Category,UserID")] Task task)
         {
+            if (Session["LogedUserID"] == null)
+            {
+                return RedirectToAction("Index");
+            }
+            
             if (ModelState.IsValid)
             {
                 task.UserID = Int32.Parse(Session["LogedUserID"].ToString());
@@ -70,6 +97,7 @@ namespace WebOrganizer.Controllers
                 
                 db.Tasks.Add(task);
                 db.SaveChanges();
+                ViewBag.Message = "tasks";
                 return RedirectToAction("Index");
             }
 
@@ -80,6 +108,11 @@ namespace WebOrganizer.Controllers
         // GET: Tasks/Edit/5
         public ActionResult Edit(int? id)
         {
+            if (Session["LogedUserID"] == null)
+            {
+                return RedirectToAction("Index");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -114,6 +147,11 @@ namespace WebOrganizer.Controllers
         // GET: Tasks/Delete/5
         public ActionResult Delete(int? id)
         {
+            if (Session["LogedUserID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -123,30 +161,53 @@ namespace WebOrganizer.Controllers
             {
                 return HttpNotFound();
             }
-            return View(task);
-        }
-
-        // POST: Tasks/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Task task = db.Tasks.Find(id);
+           
             db.Tasks.Remove(task);
             db.SaveChanges();
             return RedirectToAction("Index");
+           // return View(task);
         }
+
+        // POST: Tasks/Delete/5
+        //[HttpPost, ActionName("Delete")]
+        //[ValidateAntiForgeryToken]
+        //public ActionResult DeleteConfirmed(int id)
+        //{
+        //    Task task = db.Tasks.Find(id);
+        //    db.Tasks.Remove(task);
+        //    db.SaveChanges();
+        //    return RedirectToAction("Index");
+        //}
 
 
 
         public ActionResult DoneTasks()
         {
+            if (Session["LogedUserID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
+
             var uID = Session["LogedUserID"].ToString();
             int LogedID = Int32.Parse(Session["LogedUserID"].ToString());
 
             if (uID != null)
             {
                 var tasks = db.FinishedTasks.Where(x => x.UserID == LogedID).ToList();
+
+                var s = tasks.FirstOrDefault();
+
+                if (s == null)
+                {
+                    ViewBag.Message = null;
+                }
+
+                if (s != null)
+                {
+                    ViewBag.Message = "tasks";
+                }
+                
+                
                 return View(tasks);
             }
             else
@@ -158,6 +219,10 @@ namespace WebOrganizer.Controllers
       
         public ActionResult Done(int? id)
         {
+            if (Session["LogedUserID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             Task task = db.Tasks.Find(id);
             FinishedTask ft = new FinishedTask();
             ft.TaskID = task.TaskID;
@@ -175,6 +240,10 @@ namespace WebOrganizer.Controllers
         
         public ActionResult DoneDelete(int? DoneID)
         {
+            if (Session["LogedUserID"] == null)
+            {
+                return RedirectToAction("Index", "Home");
+            }
             if (DoneID == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
